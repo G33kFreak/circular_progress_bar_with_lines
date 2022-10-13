@@ -66,7 +66,7 @@ class _ProgressBarPainter extends CustomPainter {
     required this.linesColor,
   }) {
     _paint = Paint()
-      ..color = Colors.black
+      ..color = linesColor
       ..strokeWidth = linesWidth;
   }
 
