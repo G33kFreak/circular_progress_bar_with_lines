@@ -27,21 +27,27 @@ class CircularProgressBarWithLines extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomPaint(
-      painter: _ProgressBarPainter(
-        linesLength: linesLength,
-        radius: radius,
-        percent: percent,
-        linesAmount: linesAmount,
-        linesWidth: linesWidth,
-        linesColor: linesColor,
-      ),
+    return SizedBox(
+      width: radius * 2 + linesLength * 2,
+      height: radius * 2 + linesLength * 2,
       child: Center(
-        child: centerWidgetBuilder != null
-            ? Builder(
-                builder: centerWidgetBuilder!,
-              )
-            : Container(),
+        child: CustomPaint(
+          painter: _ProgressBarPainter(
+            linesLength: linesLength,
+            radius: radius,
+            percent: percent,
+            linesAmount: linesAmount,
+            linesWidth: linesWidth,
+            linesColor: linesColor,
+          ),
+          child: Center(
+            child: centerWidgetBuilder != null
+                ? Builder(
+                    builder: centerWidgetBuilder!,
+                  )
+                : Container(),
+          ),
+        ),
       ),
     );
   }
