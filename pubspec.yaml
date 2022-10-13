@@ -1,7 +1,16 @@
 name: circular_progress_bar_with_lines
-description: A new Flutter package project.
-version: 0.0.1
-homepage:
+description: Simple configurable circular progress bar built out of the lines.
+version: 0.0.5
+homepage: https://github.com/G33kFreak/circular_progress_bar_with_lines
+repository: https://github.com/G33kFreak/circular_progress_bar_with_lines
+
+platforms:
+  android:
+  ios:
+  linux:
+  macos:
+  web:
+  windows:
 
 environment:
   sdk: '>=2.18.2 <3.0.0'

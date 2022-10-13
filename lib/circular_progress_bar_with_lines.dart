@@ -8,21 +8,22 @@ class CircularProgressBarWithLines extends StatelessWidget {
   final double linesLength;
   final double radius;
   final double percent;
-  final double linesAmount;
+  final int linesAmount;
   final double linesWidth;
   final Color linesColor;
-  final Widget Function(BuildContext)? textBuilder;
+  final Widget Function(BuildContext)? centerWidgetBuilder;
 
   const CircularProgressBarWithLines({
     Key? key,
     this.linesLength = 50,
     this.radius = 100,
-    this.percent = 40,
+    required this.percent,
     this.linesAmount = 60,
     this.linesWidth = 2,
-    this.textBuilder,
+    this.centerWidgetBuilder,
     this.linesColor = Colors.black,
-  }) : super(key: key);
+  })  : assert(percent >= 0 && percent <= 100),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -36,9 +37,9 @@ class CircularProgressBarWithLines extends StatelessWidget {
         linesColor: linesColor,
       ),
       child: Center(
-        child: textBuilder != null
+        child: centerWidgetBuilder != null
             ? Builder(
-                builder: textBuilder!,
+                builder: centerWidgetBuilder!,
               )
             : Container(),
       ),
@@ -50,7 +51,7 @@ class _ProgressBarPainter extends CustomPainter {
   final double linesLength;
   final double radius;
   final double percent;
-  final double linesAmount;
+  final int linesAmount;
   final double linesWidth;
   final Color linesColor;
 

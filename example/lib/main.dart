@@ -46,7 +46,9 @@ class _HomePageState extends State<HomePage> {
             Flexible(
               child: CircularProgressBarWithLines(
                 percent: _percent,
-                textBuilder: (context) => Text(_percent.round().toString()),
+                centerWidgetBuilder: (context) => Text(
+                  '${_percent.round()}',
+                ),
               ),
             ),
             Slider(

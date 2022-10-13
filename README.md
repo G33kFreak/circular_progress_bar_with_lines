@@ -1,39 +1,76 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+Simple configurable circular progress bar built out of the lines.
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
+<p>
+  <img src="https://github.com/G33kFreak/circular_progress_bar_with_lines/blob/main/doc/example.gif?raw=true"
+    alt="An animated image of the iOS in-app purchase UI" height="400"/>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+</p>
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages).
--->
+## Configuration
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
-
-## Features
-
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+| Param                 | Description                                                          | Type                           | Default value  |
+|-----------------------|----------------------------------------------------------------------|--------------------------------|----------------|
+| `linesLength`         | Defines how long will lines in loader be                             | double                         | 50             |
+| `radius`              | Defines radius between center of circle and start point of each line | double                         | 100            |
+| `percent`             | Defines progress, min value is 0, max value is 100                   | double                         | required field |
+| `linesAmount`         | Defines how many lines progress bar contains                         | int                            | 60             |
+| `linesWidth`          | Defines width for each line                                          | double                         | 2              |
+| `linesColor`          | Defines lines' color                                                 | Color                          | Colors.black   |
+| `centerWidgetBuilder` | Builder for widget that will be placed in center of progress bar     | Widget Function(BuildContext)? | optional field |
+|                       |                                                                      |                                |                |
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+## Installing
 
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
-
-```dart
-const like = 'sample';
+```yaml
+dependencies:
+  circular_progress_bar_with_lines: ^0.0.5
 ```
 
-## Additional information
+### Import
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+```dart
+import 'package:circular_progress_bar_with_lines/circular_progress_bar_with_lines.dart';
+```
+
+## Example
+
+```dart
+class _HomePageState extends State<HomePage> {
+  double _percent = 0;
+
+  void _updateValue(double newValue) {
+    setState(() {
+      _percent = newValue;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          children: [
+            Flexible(
+              child: CircularProgressBarWithLines(
+                percent: _percent,
+                centerWidgetBuilder: (context) => Text(
+                  '${_percent.round()}',
+                ),
+              ),
+            ),
+            Slider(
+              value: _percent.toDouble(),
+              min: 0,
+              max: 100,
+              onChanged: _updateValue,
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+```
